@@ -1,0 +1,23 @@
+{
+    "presets": ["@babel/preset-env", "@babel/preset-typescript"],
+    "plugins": [
+        [
+            "module-resolver",
+            {
+                "extensions": [".ts", ".js"],
+                "root": ["./"],
+                "alias": {
+                    "@controllers": ["./src/controllers"],
+                    "@repositories": ["./src/repositories"],
+                    "@services": ["./src/services"],
+                    "@models": ["./src/models"],
+                    "@mappers": ["./src/mappers"],
+                    "@config": ["./src/config"],
+                    "@helpers": ["./src/helpers"]
+                }
+            }
+        ],
+        "transform-class-properties",
+        "@babel/plugin-transform-runtime"
+    ]
+}

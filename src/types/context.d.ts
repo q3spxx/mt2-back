@@ -1,0 +1,3 @@
+interface ContextDTO {
+    wordTypes: WordType[];
+}
