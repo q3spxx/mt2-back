@@ -26,22 +26,16 @@ export class WordsModel implements IWordsModel {
         });
     }
 
-    public createWord({ main, secondary, third, type }: WordDomain): Promise<WordDomain> {
-        return WordsTable.create({
-            main,
-            secondary,
-            third,
-            type,
-        });
+    public createWord(word: WordDomain): Promise<WordDomain> {
+        return WordsTable.create(word);
     }
 
-    public updateWords({ id, main, secondary, third, type }: WordDomain): Promise<WordDomain[]> {
+    public updateWords({ id, secondary, third, ...rest }: WordDomain): Promise<WordDomain[]> {
         return WordsTable.update(
             {
-                main,
-                secondary,
-                third,
-                type,
+                secondary: secondary || null,
+                third: third || null,
+                ...rest,
             },
             {
                 where: {

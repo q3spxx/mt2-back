@@ -8,7 +8,7 @@ const historyService = new HistoryService();
 export const historyController = Router();
 
 historyController
-    .route('/history')
+    .route('/v1/history')
     .get(async (_, response) => {
         historyService.getHistories().then(data => response.json(data));
     })
@@ -17,7 +17,7 @@ historyController
     });
 
 historyController
-    .route('/history/:id')
+    .route('/v1/history/:id')
     .delete(deleteHistoryValidator, async (request: ValidatedRequest<DeleteHistorySchema>, response) => {
         historyService.deleteHistory(request.params.id).then(data => response.json(`${data} items were deleted`));
     });

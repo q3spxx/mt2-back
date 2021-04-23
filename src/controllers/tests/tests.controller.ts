@@ -7,6 +7,8 @@ import { GetTestsSchema } from './tests.types';
 const wordsService = new WordsService();
 export const testsController = Router();
 
-testsController.route('/tests').get(getTestsValidator, async (request: ValidatedRequest<GetTestsSchema>, response) => {
-    wordsService.getRandomWords(request.query.limit).then(data => response.json(data));
-});
+testsController
+    .route('/v1/tests')
+    .get(getTestsValidator, async (request: ValidatedRequest<GetTestsSchema>, response) => {
+        wordsService.getRandomWords(request.query.limit).then(data => response.json(data));
+    });

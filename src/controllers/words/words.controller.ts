@@ -8,7 +8,7 @@ const wordsService = new WordsService();
 export const wordsController = Router();
 
 wordsController
-    .route('/words')
+    .route('/v1/words')
     .get(async (_, response) => {
         wordsService.getWords().then(data => response.json(data));
     })
@@ -17,7 +17,7 @@ wordsController
     });
 
 wordsController
-    .route('/words/:id')
+    .route('/v1/words/:id')
     .all(idWordValidator)
     .put(putWordValidator, async (request: ValidatedRequest<PutWordSchema>, response) => {
         wordsService.updateWords({ ...request.body, id: request.params.id }).then(data => response.json(data));
