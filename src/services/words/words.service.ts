@@ -26,31 +26,17 @@ export class WordsService {
     }
 
     public async getRandomWords(limit?: number): Promise<WordDTO[]> {
-        const words = await this.wordsRepository.getWords();
-
-        const sortedWords = words.sort((wordA, wordB) => {
-            if (!wordA.rating || !wordB.rating) {
-                return 0;
-            }
-
-            if (wordA.rating > wordB.rating) {
-                return 1;
-            }
-
-            if (wordA.rating < wordB.rating) {
-                return -1;
-            }
-
-            return 0;
+        const words = await this.wordsRepository.getWords({
+            orderBy: [{ name: 'rating' }],
         });
 
         const result = [];
 
-        const resultLimit = limit || sortedWords.length;
+        const resultLimit = limit || words.length;
 
-        for (let i = 0; i < resultLimit && sortedWords.length; i += 1) {
-            const index = Math.random() * sortedWords.length * 0.5;
-            result.push(sortedWords.splice(index, 1)[0]);
+        for (let i = 0; i < resultLimit && words.length; i += 1) {
+            const index = Math.floor(Math.random() * words.length * 0.5);
+            result.push(words.splice(index, 1)[0]);
         }
 
         return result;

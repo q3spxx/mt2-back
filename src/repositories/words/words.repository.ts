@@ -8,8 +8,8 @@ export class WordsRepository {
         this.mapper = mapper;
     }
 
-    public async getWords(): Promise<WordDTO[]> {
-        const data = await this.model.getWords();
+    public async getWords(params?: WordsQueryParams): Promise<WordDTO[]> {
+        const data = await this.model.getWords(params);
         return data.map(item => this.mapper.toDalEntity(item));
     }
 

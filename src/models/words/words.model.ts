@@ -3,7 +3,7 @@ import { HistoryTable } from '../history/history.table';
 import { WordsTable } from './words.table';
 
 export class WordsModel implements IWordsModel {
-    public async getWords(): Promise<WordDomain[]> {
+    public async getWords(params?: WordsQueryParams): Promise<WordDomain[]> {
         return WordsTable.findAll({
             attributes: [
                 'id',
@@ -22,6 +22,7 @@ export class WordsModel implements IWordsModel {
                 },
             ],
             group: ['words.id', 'history.wordId'],
+            order: params?.orderBy?.map(({ name, direction }) => [Sequelize.literal(name), direction || 'ASC']),
             raw: true,
         });
     }

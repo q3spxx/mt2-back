@@ -30,8 +30,10 @@ type WordType = 'noun' | 'adverb' | 'verb' | 'сonjunction' | 'adjective' | 'pre
 type IWordDataMapper = Mapper<WordDomain, WordDTO>;
 
 interface IWordsModel {
-    getWords(): Promise<WordDomain[]>;
+    getWords(params?: WordsQueryParams): Promise<WordDomain[]>;
     deleteWord(id?: number): Promise<number>;
     createWord(params: WordDomain): Promise<WordDomain>;
     updateWords(params: WordDomain): Promise<WordDomain[]>;
 }
+
+type WordsQueryParams = QueryParams<keyof WordDomain>;
