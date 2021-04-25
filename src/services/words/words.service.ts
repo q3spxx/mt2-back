@@ -35,10 +35,17 @@ export class WordsService {
         const resultLimit = limit || words.length;
 
         for (let i = 0; i < resultLimit && words.length; i += 1) {
-            const index = Math.floor(Math.random() * words.length * 0.5);
-            result.push(words.splice(index, 1)[0]);
+            result.push(words.splice(this.getRandomIndex(words.length, resultLimit), 1)[0]);
         }
 
         return result;
+    }
+
+    private getRandomIndex(amount: number, limit: number): number {
+        if (amount >= limit) {
+            return this.getRandomIndex(Math.floor(amount * 0.5), limit);
+        }
+
+        return Math.floor(Math.random() * amount);
     }
 }
