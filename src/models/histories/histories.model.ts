@@ -14,6 +14,7 @@ export class HistoriesModel implements IHistoriesModel {
                         'rating',
                         'wrongs',
                         'spendedTime',
+                        'variant',
                         [Sequelize.literal('"wordsHistories->word"."id"'), 'id'],
                         [Sequelize.literal('"wordsHistories->word"."main"'), 'main'],
                         [Sequelize.literal('"wordsHistories->word"."secondary"'), 'secondary'],

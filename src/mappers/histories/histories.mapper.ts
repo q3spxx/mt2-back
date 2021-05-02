@@ -15,6 +15,7 @@ export class HistoryDataMapper implements IHistoryDataMapper {
                     rating: word.rating,
                     wrongs: word.wrongs,
                     spendedTime: word.spendedTime,
+                    variant: word.variant,
                 };
             }),
         };
@@ -53,7 +54,10 @@ export class HistoryDataMapper implements IHistoryDataMapper {
                     spendedTime += history.spendedTime;
                 }
 
-                return this.wordsMapper.toDalEntity(history);
+                return {
+                    ...this.wordsMapper.toDalEntity(history),
+                    variant: history.variant,
+                };
             }),
         };
 

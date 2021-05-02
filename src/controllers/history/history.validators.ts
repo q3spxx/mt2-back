@@ -12,6 +12,7 @@ const postHistorySchema = Joi.object({
             rating: Joi.number().required(),
             wrongs: Joi.number().required(),
             spendedTime: Joi.number().required(),
+            variant: Joi.string().required(),
         })
         .required(),
 });

@@ -10,6 +10,8 @@ export class WordsHistoriesTable extends Model {
 
     spendedTime!: number;
 
+    variant!: string;
+
     createdAt!: string;
 }
 
@@ -34,6 +36,9 @@ WordsHistoriesTable.init(
         },
         spendedTime: {
             type: DataTypes.INTEGER,
+        },
+        variant: {
+            type: DataTypes.TEXT,
         },
     },
     {

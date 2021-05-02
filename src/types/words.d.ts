@@ -13,6 +13,7 @@ interface WordDomain {
     third?: string;
     rating?: number;
     wrongs?: number;
+    variant?: string;
     spendedTime?: number;
 }
 
@@ -24,6 +25,7 @@ interface WordDTO {
     third?: WordVariant;
     rating?: number;
     wrongs?: number;
+    variant?: string;
     spendedTime?: number;
 }
 
