@@ -1,12 +1,16 @@
 export class WordDataMapper implements IWordDataMapper {
-    public toDomain({ id, main, secondary, third, type, rating, wrongs }: WordDTO): WordDomain {
+    public toDomain({ id, main, secondary, third, type, rating, wrongs, spendedTime }: WordDTO): WordDomain {
         const data: WordDomain = {
             id,
-            main: JSON.stringify(main),
             type,
             rating,
             wrongs,
+            spendedTime,
         };
+
+        if (main) {
+            data.main = JSON.stringify(main);
+        }
 
         if (secondary) {
             data.secondary = JSON.stringify(secondary);
@@ -19,14 +23,18 @@ export class WordDataMapper implements IWordDataMapper {
         return data;
     }
 
-    public toDalEntity({ id, main, secondary, third, type, rating, wrongs }: WordDomain): WordDTO {
+    public toDalEntity({ id, main, secondary, third, type, rating, wrongs, spendedTime }: WordDomain): WordDTO {
         const data: WordDTO = {
             id,
-            main: JSON.parse(main),
             type,
             rating,
             wrongs,
+            spendedTime,
         };
+
+        if (main) {
+            data.main = JSON.parse(main);
+        }
 
         if (secondary) {
             data.secondary = JSON.parse(secondary);

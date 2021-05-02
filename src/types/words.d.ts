@@ -1,39 +1,37 @@
-interface WordDTO {
-    id?: number;
-    type: WordType;
-    main: WordVariant;
-    secondary?: WordVariant;
-    third?: WordVariant;
-    rating?: number;
-    wrongs?: number;
-}
-
 interface WordVariant {
     name: string;
     translate: string;
 }
 
+type WordType = 'noun' | 'adverb' | 'verb' | 'сonjunction' | 'adjective' | 'preposition';
+
 interface WordDomain {
     id?: number;
-    type: WordType;
-    main: string;
+    type?: WordType;
+    main?: string;
     secondary?: string;
     third?: string;
     rating?: number;
     wrongs?: number;
+    spendedTime?: number;
 }
 
-type WordParams = Pick<WordDTO, 'id' | 'main' | 'secondary' | 'third' | 'type'>;
-
-type WordType = 'noun' | 'adverb' | 'verb' | 'сonjunction' | 'adjective' | 'preposition';
+interface WordDTO {
+    id?: number;
+    type?: WordType;
+    main?: WordVariant;
+    secondary?: WordVariant;
+    third?: WordVariant;
+    rating?: number;
+    wrongs?: number;
+    spendedTime?: number;
+}
 
 type IWordDataMapper = Mapper<WordDomain, WordDTO>;
 
 interface IWordsModel {
-    getWords(params?: WordsQueryParams): Promise<WordDomain[]>;
+    getWords(options?: QueryOptions<keyof WordDomain>): Promise<WordDomain[]>;
     deleteWord(id?: number): Promise<number>;
     createWord(params: WordDomain): Promise<WordDomain>;
     updateWords(params: WordDomain): Promise<WordDomain[]>;
 }
-
-type WordsQueryParams = QueryParams<keyof WordDomain>;

@@ -12,8 +12,8 @@
         "docker:stop": "docker stop mt2-back",
         "lint": "eslint --ext .ts ./src/",
         "lint:fix": "eslint --fix --ext .ts ./src/",
-        "prettier": "prettier --write ./src/**/*.ts{,x}",
-        "check-types": "tsc --noEmit"
+        "check-types": "tsc --noEmit",
+        "db:upgrade": "node scripts/db.upgrade.js"
     },
     "devDependencies": {
         "@babel/cli": "7.13.14",
@@ -26,8 +26,8 @@
         "@types/express": "4.17.11",
         "@types/node": "12.20.10",
         "@types/pg": "7.14.11",
-        "@typescript-eslint/eslint-plugin": "2.34.0",
-        "@typescript-eslint/parser": "2.34.0",
+        "@typescript-eslint/eslint-plugin": "4.22.0",
+        "@typescript-eslint/parser": "4.22.0",
         "babel-plugin-module-resolver": "4.1.0",
         "babel-plugin-transform-class-properties": "6.24.1",
         "eslint": "7.24.0",

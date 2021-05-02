@@ -7,6 +7,6 @@ interface OrderBy<T> {
     name: T;
     direction?: 'ASC' | 'DESC';
 }
-interface QueryParams<T extends string> {
+interface QueryOptions<T extends string> {
     orderBy?: OrderBy<T>[];
 }

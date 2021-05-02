@@ -4,20 +4,16 @@ import Joi from 'joi';
 const validator = createValidator();
 
 const postHistorySchema = Joi.object({
-    histories: Joi.array()
-        .items(
-            Joi.object({
-                wordId: Joi.number().required(),
-                rating: Joi.number().required(),
-                wrongs: Joi.number().required(),
-            })
-        )
+    testType: Joi.string().required(),
+    wordsAmount: Joi.number().required(),
+    words: Joi.array()
+        .items({
+            id: Joi.number().required(),
+            rating: Joi.number().required(),
+            wrongs: Joi.number().required(),
+            spendedTime: Joi.number().required(),
+        })
         .required(),
 });
 
-const deleteHistorySchema = Joi.object({
-    id: Joi.number().required(),
-});
-
 export const postHistoryValidator = validator.body(postHistorySchema);
-export const deleteHistoryValidator = validator.params(deleteHistorySchema);

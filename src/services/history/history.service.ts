@@ -1,22 +1,22 @@
-import { HistoryModel } from '@models';
-import { HistoryRepository } from '@repositories';
+import { HistoryDataMapper, WordDataMapper } from '@mappers';
+import { HistoriesModel } from '@models';
+import { HistoriesRepository } from '@repositories';
 
 export class HistoryService {
-    private historyRepository: HistoryRepository;
+    private historiesRepository: HistoriesRepository;
 
     constructor() {
-        this.historyRepository = new HistoryRepository(new HistoryModel());
+        this.historiesRepository = new HistoriesRepository(
+            new HistoriesModel(),
+            new HistoryDataMapper(new WordDataMapper())
+        );
     }
 
     public async getHistories(): Promise<HistoryDTO[]> {
-        return this.historyRepository.getHistories();
+        return this.historiesRepository.getHistories();
     }
 
-    public async createHistories(params: HistoryParams[]): Promise<HistoryDTO[]> {
-        return this.historyRepository.createHistories(params);
-    }
-
-    public async deleteHistory(id?: number): Promise<number> {
-        return this.historyRepository.deleteHistory(id);
+    public async createHistory(params: HistoryDTO): Promise<HistoryDTO> {
+        return this.historiesRepository.createHistory(params);
     }
 }

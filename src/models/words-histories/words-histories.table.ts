@@ -1,19 +1,19 @@
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from '../sequelize';
 
-export class HistoryTable extends Model {
+export class WordsHistoriesTable extends Model {
     id!: number;
-
-    wordId!: number;
 
     rating!: number;
 
     wrongs!: number;
 
+    spendedTime!: number;
+
     createdAt!: string;
 }
 
-HistoryTable.init(
+WordsHistoriesTable.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -23,15 +23,21 @@ HistoryTable.init(
         wordId: {
             type: DataTypes.INTEGER,
         },
+        testId: {
+            type: DataTypes.INTEGER,
+        },
         rating: {
             type: DataTypes.INTEGER,
         },
         wrongs: {
             type: DataTypes.INTEGER,
         },
+        spendedTime: {
+            type: DataTypes.INTEGER,
+        },
     },
     {
-        modelName: 'history',
+        modelName: 'wordsHistories',
         sequelize,
         freezeTableName: true,
     }

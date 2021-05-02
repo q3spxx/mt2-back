@@ -8,12 +8,12 @@ export class WordsRepository {
         this.mapper = mapper;
     }
 
-    public async getWords(params?: WordsQueryParams): Promise<WordDTO[]> {
-        const data = await this.model.getWords(params);
+    public async getWords(options?: QueryOptions<keyof WordDomain>): Promise<WordDTO[]> {
+        const data = await this.model.getWords(options);
         return data.map(item => this.mapper.toDalEntity(item));
     }
 
-    public async createWord(params: WordParams): Promise<WordDTO> {
+    public async createWord(params: WordDTO): Promise<WordDTO> {
         const data = await this.model.createWord(this.mapper.toDomain(params));
         return this.mapper.toDalEntity(data);
     }
@@ -23,7 +23,7 @@ export class WordsRepository {
         return data;
     }
 
-    public async updateWords(params: WordParams): Promise<WordDTO[]> {
+    public async updateWords(params: WordDTO): Promise<WordDTO[]> {
         const data = await this.model.updateWords(this.mapper.toDomain(params));
         return data.map(word => this.mapper.toDalEntity(word));
     }

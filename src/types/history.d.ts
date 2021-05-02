@@ -1,22 +1,25 @@
 interface HistoryDTO {
-    id: number;
-    wordId: number;
-    rating: number;
-    wrongs: number;
+    id?: number;
+    testType?: string;
+    wordsAmount?: number;
+    createdAt?: string;
+    rating?: number;
+    wrongs?: number;
+    spendedTime?: number;
+    words?: WordDTO[];
 }
 
 interface HistoryDomain {
-    id: number;
-    wordId: number;
-    rating: number;
-    wrongs: number;
-    createdAt: string;
+    id?: number;
+    testType?: string;
+    wordsAmount?: number;
+    createdAt?: string;
+    wordsHistories?: WordDomain[];
 }
 
-type HistoryParams = Pick<HistoryDTO, 'wordId' | 'rating' | 'wrongs'>;
+type IHistoryDataMapper = Mapper<HistoryDomain, HistoryDTO>;
 
-interface IHistoryModel {
+interface IHistoriesModel {
     getHistories(): Promise<HistoryDomain[]>;
-    deleteHistory(id?: number): Promise<number>;
-    createHistories(params: HistoryParams[]): Promise<HistoryDomain[]>;
+    createHistory(params: HistoryDomain): Promise<HistoryDomain>;
 }

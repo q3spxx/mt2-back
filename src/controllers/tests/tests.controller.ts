@@ -1,14 +1,10 @@
 import { Router } from 'express';
-import { WordsService } from '@services';
-import { ValidatedRequest } from 'express-joi-validation';
+import { TestsService } from '@services';
 import { getTestsValidator } from './tests.validators';
-import { GetTestsSchema } from './tests.types';
 
-const wordsService = new WordsService();
+const testsService = new TestsService();
 export const testsController = Router();
 
-testsController
-    .route('/v1/tests')
-    .get(getTestsValidator, async (request: ValidatedRequest<GetTestsSchema>, response) => {
-        wordsService.getRandomWords(request.query.limit).then(data => response.json(data));
-    });
+testsController.route('/v1/tests').get(getTestsValidator, async (request, response) => {
+    testsService.getTestWords(Number(request.query.limit)).then(data => response.json(data));
+});

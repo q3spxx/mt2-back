@@ -1,5 +1,4 @@
 import { DataTypes, Model } from 'sequelize';
-import { HistoryTable } from '../history/history.table';
 import { sequelize } from '../sequelize';
 
 export class WordsTable extends Model {
@@ -46,13 +45,3 @@ WordsTable.init(
         timestamps: false,
     }
 );
-
-WordsTable.hasMany(HistoryTable, {
-    foreignKey: {
-        name: 'wordId',
-    },
-    as: 'history',
-    constraints: false,
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE',
-});
